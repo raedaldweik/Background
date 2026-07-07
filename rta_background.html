@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RTA Background</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ════════════════════════════════════════════════════════════════════
+   *  ✦  RTA · BACKDROP  ·  LUXURY LIGHT  ✦
+   *  Warm pearl atmosphere · paper grain · mesh whispers · breathing bokeh
+   *  The background layer of the RTA dashboards, extracted as a
+   *  standalone full-viewport page with the header and logos.
+   * ════════════════════════════════════════════════════════════════════ */
+  :root {
+    /* ─── RTA brand (used SPARINGLY) ────────────────────────────── */
+    --rta-red:       #b91c2c;
+    --rta-red-light: #dc2626;
+    --rta-red-deep:  #7f1d1d;
+
+    /* ─── Surfaces ─────────────────────────────────────────────── */
+    --pearl-1: #f7f3ec;     /* warm cream */
+    --pearl-2: #efe7d8;     /* deeper warm */
+    --pearl-3: #e8edf3;     /* cool counter */
+
+    /* ─── Ink (text) ────────────────────────────────────────────── */
+    --ink-1: #0a1628;
+    --ink-2: #1e293b;
+    --ink-3: #475569;
+    --ink-5: #94a3b8;
+
+    /* ─── Glass surfaces ────────────────────────────────────────── */
+    --glass-strong: rgba(255, 254, 251, 0.82);
+    --hairline:     rgba(15, 23, 42, 0.07);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 100%; height: 100%;
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--ink-2);
+    /* Warm pearl body backdrop */
+    background: radial-gradient(ellipse 90% 90% at center,
+      #e8e2d4 0%,
+      #d8d4cc 45%,
+      #c2bfb9 100%);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* ════════════════════════════════════════════════════════════════
+   *  APP SHELL · fills 100% of viewport
+   *  Internal cqw units adapt fluidly to whatever the screen is.
+   * ════════════════════════════════════════════════════════════════ */
+  .app-shell {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    container-type: inline-size;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    background:
+      /* corner color whispers (the luxury depth) */
+      radial-gradient(ellipse 70% 55% at 8% 5%,   rgba(255, 235, 200, 0.55) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 50% at 95% 8%,  rgba(190, 215, 240, 0.50) 0%, transparent 55%),
+      radial-gradient(ellipse 55% 45% at 92% 95%, rgba(220, 200, 175, 0.45) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 50% at 5% 95%,  rgba(200, 220, 235, 0.50) 0%, transparent 55%),
+      /* base pearl gradient */
+      linear-gradient(140deg, var(--pearl-1) 0%, var(--pearl-3) 55%, var(--pearl-2) 100%);
+  }
+
+  /* Paper grain — extremely subtle */
+  .app-shell::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(15, 23, 42, 0.045) 1px, transparent 1px),
+      radial-gradient(circle at 24px 18px, rgba(15, 23, 42, 0.025) 1px, transparent 1px);
+    background-size: 32px 32px, 48px 48px;
+    pointer-events: none; z-index: 0;
+    opacity: 0.7;
+    mix-blend-mode: multiply;
+  }
+
+  /* Mesh atmospherics overlay */
+  .app-shell::after {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 40% 32% at 75% 25%, rgba(180, 140, 200, 0.12) 0%, transparent 65%),
+      radial-gradient(ellipse 35% 28% at 20% 70%, rgba(140, 180, 220, 0.14) 0%, transparent 65%),
+      radial-gradient(ellipse 30% 30% at 85% 75%, rgba(220, 175, 130, 0.10) 0%, transparent 65%);
+    pointer-events: none; z-index: 0;
+  }
+
+  /* ════════════════════════════════════════════════════════════════
+   *  ATMOSPHERIC BOKEH · breathing blobs
+   * ════════════════════════════════════════════════════════════════ */
+  .bokeh-layer { position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .bokeh-dot {
+    position: absolute; border-radius: 50%;
+    transform: translate(-50%, -50%);
+    aspect-ratio: 1;
+    will-change: opacity, transform;
+    mix-blend-mode: multiply;
+  }
+  .mega-teal   { background: radial-gradient(circle, rgba(125, 175, 215, 0.32) 0%, rgba(125, 175, 215, 0.08) 35%, transparent 70%); filter: blur(2cqw); }
+  .mega-cyan   { background: radial-gradient(circle, rgba(150, 195, 225, 0.28) 0%, rgba(150, 195, 225, 0.07) 35%, transparent 70%); filter: blur(2.2cqw); }
+  .mega-purple { background: radial-gradient(circle, rgba(180, 150, 200, 0.25) 0%, rgba(180, 150, 200, 0.06) 35%, transparent 70%); filter: blur(1.8cqw); }
+  .mega-amber  { background: radial-gradient(circle, rgba(220, 180, 140, 0.30) 0%, rgba(220, 180, 140, 0.08) 35%, transparent 70%); filter: blur(1.8cqw); }
+  .teal-blob   { background: radial-gradient(circle, rgba(125, 175, 215, 0.28) 0%, rgba(125, 175, 215, 0.06) 50%, transparent 80%); filter: blur(0.9cqw); }
+  .cyan-blob   { background: radial-gradient(circle, rgba(150, 195, 225, 0.25) 0%, rgba(150, 195, 225, 0.06) 50%, transparent 80%); filter: blur(0.85cqw); }
+  .amber-blob  { background: radial-gradient(circle, rgba(220, 180, 140, 0.30) 0%, rgba(220, 180, 140, 0.07) 50%, transparent 80%); filter: blur(0.7cqw); }
+  .purple-blob { background: radial-gradient(circle, rgba(180, 150, 200, 0.25) 0%, rgba(180, 150, 200, 0.06) 50%, transparent 80%); filter: blur(0.9cqw); }
+
+  @keyframes slow-breathe {
+    0%, 100% { opacity: 0.65; transform: translate(-50%, -50%) scale(1); }
+    50%      { opacity: 1;    transform: translate(-50%, -50%) scale(1.06); }
+  }
+  .mega-teal   { animation: slow-breathe  9s ease-in-out infinite; }
+  .mega-cyan   { animation: slow-breathe 11s ease-in-out infinite 2s; }
+  .mega-purple { animation: slow-breathe  8s ease-in-out infinite 4s; }
+  .mega-amber  { animation: slow-breathe 10s ease-in-out infinite 1s; }
+  .mega-teal-2 { animation: slow-breathe 12s ease-in-out infinite 3s; }
+
+  /* Mega blob positions */
+  .a1 { top: 16%; left: 82%; width: 28cqw; }
+  .a2 { top: 85%; left: 14%; width: 32cqw; }
+  .a3 { top: 90%; left: 92%; width: 24cqw; }
+  .a4 { top: 22%; left: 6%;  width: 20cqw; }
+  .a5 { top: 8%;  left: 45%; width: 22cqw; }
+
+  /* Small blob positions */
+  .m1  { top: 5%;  left: 28%; width: 5cqw; }
+  .m2  { top: 10%; left: 62%; width: 4.5cqw; }
+  .m3  { top: 25%; left: 1%;  width: 4.5cqw; }
+  .m4  { top: 50%; left: 98%; width: 5cqw; }
+  .m5  { top: 70%; left: 2%;  width: 4.5cqw; }
+  .m6  { top: 92%; left: 50%; width: 5cqw; }
+  .m7  { top: 95%; left: 72%; width: 4cqw; }
+  .m8  { top: 3%;  left: 18%; width: 3.5cqw; }
+  .m9  { top: 13%; left: 92%; width: 5cqw; }
+  .m10 { top: 78%; left: 97%; width: 4cqw; }
+  .m11 { top: 18%; left: 70%; width: 4cqw; }
+  .m12 { top: 45%; left: 12%; width: 4cqw; }
+  .m13 { top: 60%; left: 88%; width: 4.5cqw; }
+  .m14 { top: 88%; left: 32%; width: 3.5cqw; }
+  .m15 { top: 32%; left: 95%; width: 3.5cqw; }
+
+  /* ════════════════════════════════════════════════════════════════
+   *  HEADER · Government of Dubai — red line — RTA logo
+   * ════════════════════════════════════════════════════════════════ */
+  .header {
+    position: relative; z-index: 2;
+    flex: 0 0 auto;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1.6cqw;
+    padding: 1.4cqw 1.8cqw 0;
+  }
+  .gov-logo {
+    height: 8cqw; width: auto; object-fit: contain; display: block;
+    filter: drop-shadow(0 1px 2px rgba(15, 23, 42, 0.08));
+  }
+  .rta-logo {
+    height: 6cqw; width: auto; object-fit: contain; display: block;
+    filter: drop-shadow(0 1px 2px rgba(15, 23, 42, 0.08));
+  }
+
+  /* Header accent line — RTA red, stretches across the middle column */
+  .red-line {
+    width: 100%; min-width: 0; height: 1px;
+    background: linear-gradient(90deg, var(--rta-red-light) 0%, var(--rta-red) 50%, rgba(185, 28, 44, 0.4) 80%, transparent 100%);
+    box-shadow: 0 0 6px rgba(185, 28, 44, 0.25);
+  }
+</style>
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Atmospheric bokeh layer -->
+    <div class="bokeh-layer">
+      <div class="bokeh-dot mega-teal   a1"></div>
+      <div class="bokeh-dot mega-cyan   a2"></div>
+      <div class="bokeh-dot mega-purple a3"></div>
+      <div class="bokeh-dot mega-amber  a4"></div>
+      <div class="bokeh-dot mega-cyan mega-teal-2 a5"></div>
+      <div class="bokeh-dot teal-blob   m1"></div>
+      <div class="bokeh-dot cyan-blob   m2"></div>
+      <div class="bokeh-dot teal-blob   m3"></div>
+      <div class="bokeh-dot cyan-blob   m4"></div>
+      <div class="bokeh-dot teal-blob   m5"></div>
+      <div class="bokeh-dot purple-blob m6"></div>
+      <div class="bokeh-dot teal-blob   m7"></div>
+      <div class="bokeh-dot amber-blob  m8"></div>
+      <div class="bokeh-dot cyan-blob   m9"></div>
+      <div class="bokeh-dot teal-blob   m10"></div>
+      <div class="bokeh-dot amber-blob  m11"></div>
+      <div class="bokeh-dot teal-blob   m12"></div>
+      <div class="bokeh-dot purple-blob m13"></div>
+      <div class="bokeh-dot cyan-blob   m14"></div>
+      <div class="bokeh-dot teal-blob   m15"></div>
+    </div>
+
+    <!-- Header — Government of Dubai · red line · RTA logo -->
+    <header class="header">
+      <!-- Government of Dubai — left -->
+      <img class="gov-logo" src="government_black.png" alt="Government of Dubai">
+
+      <!-- Red accent line — spans the full middle of the header -->
+      <div class="red-line"></div>
+
+      <!-- RTA logo — right -->
+      <img class="rta-logo" src="RTA_Dubai_logo.png" alt="RTA">
+    </header>
+  </div>
+</body>
+</html>
